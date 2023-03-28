@@ -56,6 +56,16 @@ export default function Home() {
             </Button>
           </Form.Item>
         </Form>
+        <br />
+        <h1>El contador esta en 0</h1>
+        <br />
+        <br />
+        <Button type="primary">
+          Aumentar
+        </Button>
+        <Button type="default">
+          Disminuir
+        </Button>
       </Col>
     </Row>
   );
