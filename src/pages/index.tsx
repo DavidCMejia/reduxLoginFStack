@@ -1,10 +1,7 @@
-import { Inter } from 'next/font/google';
 import {
   Button, Form, Input, Checkbox, Row, Col,
 } from 'antd';
 import axios from 'axios';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   const onFinish = async (values: any) => {
