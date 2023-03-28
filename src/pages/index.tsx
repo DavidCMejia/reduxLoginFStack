@@ -2,8 +2,14 @@ import {
   Button, Form, Input, Checkbox, Row, Col,
 } from 'antd';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCounter } from '../../selectors/initialSelectors';
+import { decrement, increment } from '../../slices/counterSlice';
 
 export default function Home() {
+  const count = useSelector(selectCounter);
+  const dispatch = useDispatch();
+
   const onFinish = async (values: any) => {
     console.log('Success:', values);
     const res = await axios.post('api/auth/login', values);
@@ -57,13 +63,13 @@ export default function Home() {
           </Form.Item>
         </Form>
         <br />
-        <h1>El contador esta en 0</h1>
+        <h1>El contador esta en {count}</h1>
         <br />
         <br />
-        <Button type="primary">
+        <Button type="primary" onClick={() => dispatch(increment())}>
           Aumentar
         </Button>
-        <Button type="default">
+        <Button type="default" onClick={() => dispatch(decrement())}>
           Disminuir
         </Button>
       </Col>
