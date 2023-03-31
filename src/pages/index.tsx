@@ -2,6 +2,7 @@ import {
   Button, Form, Input, Checkbox, Row, Col,
 } from 'antd';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCounter } from '../../selectors/initialSelectors';
 import { decrement, increment } from '../../slices/counterSlice';
@@ -9,15 +10,15 @@ import { decrement, increment } from '../../slices/counterSlice';
 export default function Home() {
   const count = useSelector(selectCounter);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const onFinish = async (values: any) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
     const res = await axios.post('api/auth/login', values);
-    console.log('🚀 ~ res:', res);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+    if (res.status === 200) {
+      router.push('/dashboard');
+    }
+    // console.log('🚀 ~ res:', res);
   };
 
   return (
@@ -30,7 +31,6 @@ export default function Home() {
           style={{ maxWidth: 600 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <center>
