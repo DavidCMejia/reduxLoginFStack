@@ -4,8 +4,8 @@ import {
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCounter } from '../../selectors/initialSelectors';
-import { decrement, increment } from '../../slices/counterSlice';
+import { selectCounter } from '../selectors/initialSelectors';
+import { decrement, increment } from '../slices/counterSlice';
 
 export default function Home() {
   const count = useSelector(selectCounter);
