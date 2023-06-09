@@ -10,13 +10,13 @@ import { decrement, increment } from '../slices/counterSlice';
 export default function Home() {
   const count = useSelector(selectCounter);
   const dispatch = useDispatch();
-  const router = useRouter();
+  const { push } = useRouter();
 
   const onFinish = async (values: any) => {
     // console.log('Success:', values);
     const res = await axios.post('api/auth/login', values);
     if (res.status === 200) {
-      router.push('/dashboard');
+      push('/dashboard');
     }
     // console.log('🚀 ~ res:', res);
   };

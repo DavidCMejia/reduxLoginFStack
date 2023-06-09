@@ -22,7 +22,11 @@ export default function loginHandler(req: NextApiRequest, res: NextApiResponse) 
     });
 
     res.setHeader('Set-Cookie', serializedToken);
-    return res.json('login sucessfully');
+    // return res.json('login sucessfully');
+    return res.status(200).json({
+      token,
+      message: 'login sucessfully',
+    });
   }
 
   return res.status(401).json({ error: 'Invalid user or password' });
